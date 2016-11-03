@@ -16,26 +16,26 @@ function decodePCM(pcm){
 	if(typeof pcm == "string"){
 		pcm = JSON.parse(pcm);
 	}
-	
+
 	//Decode all Base64 String
 	//Decode pcm name
 	pcm.pcm.name = atob(pcm.pcm.name);
 	//Decode the name of each features
-	for(var f in pcm.pcm.features){ 
+	for(var f in pcm.pcm.features){
 		pcm.pcm.features[f].name = atob(pcm.pcm.features[f].name);
 	}
-	
+
 	//Decode all pcm > products > cells > content and rawContent from Base64
-	for(var p in pcm.pcm.products){ 
+	for(var p in pcm.pcm.products){
 		for(var c in pcm.pcm.products[p].cells){
 			pcm.pcm.products[p].cells[c].content = atob(pcm.pcm.products[p].cells[c].content);
 			pcm.pcm.products[p].cells[c].rawContent = atob(pcm.pcm.products[p].cells[c].rawContent);
 		}
 	}
-	
+
 	//Display the decoded PCM
 	console.log(pcm); //in console
-	
+
 	//In DOM
 	var html = "<table><tr>";
 	for(var f in pcm.pcm.features){
@@ -58,4 +58,5 @@ function decodePCM(pcm){
 	$("body").html(html);
 }
 
+// decodePCM(pcmSample1);
 decodePCM(pcmSample2);
