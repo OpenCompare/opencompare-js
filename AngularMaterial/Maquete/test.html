@@ -24,42 +24,9 @@
 		</div>
 	</div>
 	<div layout="row">
-    <div layout="column">
 
 
-    <div flex-gt-sm="50">
-            <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.cb5" class="md-primary">
 
-            </md-checkbox>
-          </div>
-          <div flex-gt-sm="50">
-                  <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.cb6" class="md-primary">
-
-                  </md-checkbox>
-                </div>
-                <div flex-gt-sm="50">
-                        <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.cb7" class="md-primary">
-
-                        </md-checkbox>
-                      </div>
-                      <div flex-gt-sm="50">
-                              <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.cb8" class="md-primary">
-
-                              </md-checkbox>
-                            </div>
-                            <div flex-gt-sm="50">
-                                    <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.cb9" class="md-primary">
-
-                                    </md-checkbox>
-                                  </div>
-                                  <div flex-gt-sm="50">
-                                          <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.cb10" class="md-primary">
-
-                                          </md-checkbox>
-                                        </div>
-  	</div>
-</div>
-</div>
 	<script>
 		console.log("Bonjour");
 	</script>
@@ -93,17 +60,27 @@
 			);
 		});
     app.controller("MainController",['$scope',function($scope){
-      $scope.number = [1,2,3];
-    }])
+      $scope.number = ["Monopolwa","Chopin","Cracovia","Absolut"];
+      $scope.show=true
+      $scope.toggle=function(){
+        $scope.show=!$scope.show
+      }
+    }]);
   </script>
+  <div layout="column">
+<md-button class ="md-button-toggle md-button md-ink-ripple" ng-click="toggle()" aria-controls="docs-menu-Demos" aria-expanded="false">Vodka</md-button>
 
-
+<div layout="column" style="padding-left:20px">
+  <div ng-show="show">
     <div flex-gt-sm="50" ng-repeat="n in number">
             <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.cb9" class="md-primary">
-
-            </md-checkbox>{{n}}
+              {{n}}
+            </md-checkbox>
           </div>
-
+  </div>
+</div>
+</div>
+</div>
 </body>
 </html>
 
