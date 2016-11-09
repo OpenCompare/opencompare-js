@@ -24,15 +24,31 @@
 		</div>
 	</div>
 	<div layout="row">
+    <md-slider-container>
+      <span>R</span>
+      <md-slider flex min="0" max="255" ng-model="red" id="red-slider">
+      </md-slider>
+      <md-input-container>
+        <input style="min-width:60px" flex type="number" ng-model="red" aria-controls="red-slider">
+      </md-input-container>
+    </md-slider-container>
+  </div>
 
+  <div layout="column">
 
+    <md-button class ="md-button-toggle md-button md-ink-ripple" ng-click="toggle()" aria-controls="docs-menu-Demos" aria-expanded="false">Vodka</md-button>
 
-	<script>
-		console.log("Bonjour");
-	</script>
-
-
-
+    <div layout="column" style="padding-left:20px">
+      <div ng-show="show">
+        <div flex-gt-sm="50" ng-repeat="n in number">
+          <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.cb9" class="md-primary">
+                  {{n}}
+          </md-checkbox>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
   <!-- Angular Material requires Angular.js Libraries -->
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
@@ -60,6 +76,7 @@
 			);
 		});
     app.controller("MainController",['$scope',function($scope){
+      $scope.red=100
       $scope.number = ["Monopolwa","Chopin","Cracovia","Absolut"];
       $scope.show=true
       $scope.toggle=function(){
@@ -67,20 +84,6 @@
       }
     }]);
   </script>
-  <div layout="column">
-<md-button class ="md-button-toggle md-button md-ink-ripple" ng-click="toggle()" aria-controls="docs-menu-Demos" aria-expanded="false">Vodka</md-button>
-
-<div layout="column" style="padding-left:20px">
-  <div ng-show="show">
-    <div flex-gt-sm="50" ng-repeat="n in number">
-            <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.cb9" class="md-primary">
-              {{n}}
-            </md-checkbox>
-          </div>
-  </div>
-</div>
-</div>
-</div>
 </body>
 </html>
 
