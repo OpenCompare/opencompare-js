@@ -3,6 +3,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Angular Material style sheet -->
   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+  
+  <!-- Range Slider style sheet -->
+  <link rel="stylesheet" href="./css/style.min.css">
+  
 </head>
 <body ng-app="BlankApp" ng-controller="MainController" ng-cloak>
   <!--
@@ -48,6 +52,9 @@
       </div>
     </div>
   </div>
+  <div layout="column" style="max-width:200px;padding-left:20px;">
+	{{lower}}<range-slider lower-value="lower" upper-value="upper" min-gap="1" step="1" min="min" max="max" ></range-slider>{{upper}}
+  </div>
 </div>
 
   <!-- Angular Material requires Angular.js Libraries -->
@@ -58,6 +65,10 @@
 
   <!-- Angular Material Library -->
   <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+  
+  
+  <!-- Range Slider library -->
+  <script src="./js/md-range-slider.min.js"></script>
 
   <!-- Your application bootstrap  -->
   <script type="text/javascript">
@@ -65,7 +76,7 @@
     /**
      * You must include the dependency on 'ngMaterial'
      */
-	var app = angular.module('BlankApp', ['ngMaterial'])
+	var app = angular.module('BlankApp', ['ngMaterial','mdRangeSlider'])
 		.config(function($mdThemingProvider) {
 		  $mdThemingProvider.theme('default')
 			.primaryPalette('red')
@@ -82,6 +93,11 @@
       $scope.toggle=function(){
         $scope.show=!$scope.show
       }
+	  
+		$scope.min = 0;
+		$scope.max = 20;
+		$scope.lower = 0;
+		$scope.upper = 5;
     }]);
   </script>
 </body>
