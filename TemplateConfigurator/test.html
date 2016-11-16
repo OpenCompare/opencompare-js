@@ -1,0 +1,109 @@
+<html lang="en" >
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Angular Material style sheet -->
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+  
+  <!-- Range Slider style sheet -->
+  <link rel="stylesheet" href="./css/style.min.css">
+  
+</head>
+<body ng-app="BlankApp" ng-controller="MainController" ng-cloak>
+  <!--
+    Your HTML content here
+  -->
+  <div layout="column" style="padding-left:20px">
+	<div layout="row">
+		<div layout="column" layout-xs="column">
+			<div style="width:200px;">
+				<md-slider ng-model="myValue1" step="1" min="10" max="130">
+				</md-slider>
+			</div>
+		</div>
+		<div layout="column" layout-xs="column">
+			<div style="width:200px;">
+				<md-slider ng-model="myValue2" step="1" min="10" max="130">
+				</md-slider>
+			</div>
+		</div>
+	</div>
+	<div layout="row">
+    <md-slider-container>
+      <span>R</span>
+      <md-slider flex min="0" max="255" ng-model="red" id="red-slider">
+      </md-slider>
+      <md-input-container>
+        <input style="min-width:60px" flex type="number" ng-model="red" aria-controls="red-slider">
+      </md-input-container>
+    </md-slider-container>
+  </div>
+
+  <div layout="column">
+
+    <md-button class ="md-button-toggle md-button md-ink-ripple" ng-click="toggle()" aria-controls="docs-menu-Demos" aria-expanded="false">Vodka</md-button>
+
+    <div layout="column" style="padding-left:20px">
+      <div ng-show="show">
+        <div flex-gt-sm="50" ng-repeat="n in number">
+          <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.cb9" class="md-primary">
+                  {{n}}
+          </md-checkbox>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div layout="column" style="max-width:200px;padding-left:20px;">
+	{{lower}}<range-slider lower-value="lower" upper-value="upper" min-gap="1" step="1" min="min" max="max" ></range-slider>{{upper}}
+  </div>
+</div>
+
+  <!-- Angular Material requires Angular.js Libraries -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+
+  <!-- Angular Material Library -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+  
+  
+  <!-- Range Slider library -->
+  <script src="./js/md-range-slider.min.js"></script>
+
+  <!-- Your application bootstrap  -->
+  <script type="text/javascript">
+  var number = [1,2,3];
+    /**
+     * You must include the dependency on 'ngMaterial'
+     */
+	var app = angular.module('BlankApp', ['ngMaterial','mdRangeSlider'])
+		.config(function($mdThemingProvider) {
+		  $mdThemingProvider.theme('default')
+			.primaryPalette('red')
+			.accentPalette('cyan', {
+					'default':'400',
+					'hue-1': '600'
+				}
+			);
+		});
+    app.controller("MainController",['$scope',function($scope){
+      $scope.red=100
+      $scope.number = ["Monopolwa","Chopin","Cracovia","Absolut"];
+      $scope.show=true
+      $scope.toggle=function(){
+        $scope.show=!$scope.show
+      }
+	  
+		$scope.min = 0;
+		$scope.max = 20;
+		$scope.lower = 0;
+		$scope.upper = 5;
+    }]);
+  </script>
+</body>
+</html>
+
+<!--
+Copyright 2016 Google Inc. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that can be in foundin the LICENSE file at http://material.angularjs.org/license.
+-->
