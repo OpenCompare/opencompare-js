@@ -36,4 +36,15 @@ app.directive('ocCheckbox', function() {
     };
 });
 
-
+app.directive('ocButtun' ,function() {
+	
+	    return {
+			restrict:"E",
+			scope: {	
+				feature: "= "    
+			},
+        template: '<md-button class ="md-button-toggle md-button md-ink-ripple" ng-click="{{feature.filter.name}}=!{{feature.filter.name}}" aria-controls="docs-menu-Demos" aria-expanded="false">Vodka</md-button></div></div>'+
+		'<div layout="column" style="padding-left:20px">'+
+     ' <div ng-show="{{feature.filter.name}}"></div></div>'
+    };
+});
