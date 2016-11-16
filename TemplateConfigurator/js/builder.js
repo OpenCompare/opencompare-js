@@ -18,18 +18,20 @@ app.controller("MainController",['$scope',function($scope){
 app.directive('oc-slider', function() {
     return {
         scope: {
-			min: "@min",
-            max: "@max",
-            lower: "@lower",
-            upper: "@upper"
+			feature: "@feature"
 		}
-        template: '{{lower}}<range-slider lower-value="{{lower}}" upper-value="{{upper}}" min-gap="1" step="1" min="{{min}}" max="{{max}}" ></range-slider>{{upper}}'
+        template: '{{feature.filter.lower}}<range-slider lower-value="{{feature.filter.lower}}" upper-value="{{feature.filter.upper}}" min-gap="1" step="1" min="{{feature.filter.min}}" max="{{feature.filter.max}}" ></range-slider>{{feature.filter.upper}}'
     };
 });
 
 
 app.directive('oc-checkbox', function() {
     return {
-        template: '<div flex-gt-sm="50" ng-repeat="n in number"><md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.cb9" class="md-primary">{{n}}</md-checkbox></div>'
+        scope: {
+            feature: "@feature"    
+        }
+        template: '<div flex-gt-sm="50" ng-repeat="n in {{feature.filter.values}}"><md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="feature.filter.matchValue[n]" class="md-primary">{{n}}</md-checkbox></div>'
     };
 });
+
+
