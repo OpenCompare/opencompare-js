@@ -9,24 +9,26 @@ app.controller("MainController",['$scope',function($scope){
  * Exemple ????
  * 
  * <ng-repeat="f in pcm.feature"> 
- * <oc-slider min={{f.min}} max={{f.max}} lower={{f.lower}} upper={{f.upper}}></oc-slider>
+ * <oc-slider feature="f"></oc-slider>
  * 
  * 
  */
 
 
-app.directive('oc-slider', function() {
+app.directive('ocSlider', function() {
     return {
+		restrict:"E",
         scope: {
 			feature: "@feature"
 		}
-        template: '{{feature.filter.lower}}<range-slider lower-value="{{feature.filter.lower}}" upper-value="{{feature.filter.upper}}" min-gap="1" step="1" min="{{feature.filter.min}}" max="{{feature.filter.max}}" ></range-slider>{{feature.filter.upper}}'
+        template: '<div class="range-slider-display">{{feature.filter.lower}}</div><div style="display:inline-block;width: calc(100% - 100px);"><range-slider lower-value="{{feature.filter.lower}}" upper-value="{{feature.filter.upper}}" min-gap="1" step="1" min="{{feature.filter.min}}" max="{{feature.filter.max}}" ></range-slider></div><div class="range-slider-display">{{feature.filter.upper}}</div>'
     };
 });
 
 
-app.directive('oc-checkbox', function() {
+app.directive('ocCheckbox', function() {
     return {
+		restrict:"E",
         scope: {
             feature: "@feature"    
         }
