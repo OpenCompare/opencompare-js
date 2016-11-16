@@ -11,7 +11,6 @@
   .range-slider-container {
   position:relative;
   width:100%;
-  height:100px;
 }
 
 .range-slider-left {
@@ -37,6 +36,14 @@
 
 .range-slider-left md-slider.md-default-theme .md-track.md-track-fill {
   background-color:rgba(0,0,0,0.26) !important;
+}
+
+.range-slider-display{
+	display:inline-block;
+	width:50px;
+	height:58px;
+	text-align:center;
+	vertical-align:middle;
 }
 </style>
   
@@ -144,12 +151,12 @@
 				min:"=min",
 				max:"=max"
 			},
-			template:"<div style=\"width:250px;\">{{lower}}<span style='width:200px;'><range-slider lower-value=\"lower\" upper-value=\"upper\" min-gap=\"1\" step=\"1\" min=\"min\" max=\"max\" ></range-slider></span>{{upper}}</div>"
+			template:"<div class='range-slider-display'>{{lower}}</div><div style='display:inline-block;width: calc(100% - 100px);'><range-slider lower-value=\"lower\" upper-value=\"upper\" min-gap=\"1\" step=\"1\" min=\"min\" max=\"max\" ></range-slider></div><div class='range-slider-display'>{{upper}}</div>"
 		}
 	});
   </script>
-  
-  <test-dir lower="lower" upper="upper" min="min" max="max"></test-dir>
+  hello<br /><br />
+ <div style="width:500px;"> <test-dir lower="lower" upper="upper" min="min" max="max"></test-dir></div>
 </body>
 </html>
 
