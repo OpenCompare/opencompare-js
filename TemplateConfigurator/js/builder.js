@@ -20,7 +20,7 @@ app.directive('ocSlider', function() {
 		restrict:"E",
         scope: {
 			feature: "@feature"
-		}
+		},
         template: '<div class="range-slider-display">{{feature.filter.lower}}</div><div style="display:inline-block;width: calc(100% - 100px);"><range-slider lower-value="{{feature.filter.lower}}" upper-value="{{feature.filter.upper}}" min-gap="1" step="1" min="{{feature.filter.min}}" max="{{feature.filter.max}}" ></range-slider></div><div class="range-slider-display">{{feature.filter.upper}}</div>'
     };
 });
@@ -31,8 +31,8 @@ app.directive('ocCheckbox', function() {
 		restrict:"E",
         scope: {
             feature: "@feature"    
-        }
-        template: '<div flex-gt-sm="50" ng-repeat="n in {{feature.filter.values}}"><md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="feature.filter.matchValue[n]" class="md-primary">{{n}}</md-checkbox></div>'
+        },
+        template: '<div flex-gt-sm="50" ng-repeat="n in feature.filter.values"><md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="feature.filter.matchValue[n]" class="md-primary">{{n}}</md-checkbox></div>'
     };
 });
 
