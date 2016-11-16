@@ -105,7 +105,7 @@
 
   <!-- Your application bootstrap  -->
   <script type="text/javascript">
-  var number = [1,2,3];
+
     /**
      * You must include the dependency on 'ngMaterial'
      */
@@ -131,7 +131,7 @@
 		$scope.max = 20;
 		$scope.lower = 0;
 		$scope.upper = 5;
-		
+		$scope.n = ["Monopolwa","Chopin","Cracovia","Absolut"];
 		$scope.testMin = 0;
 		$scope.testMax = 8;
     }]);
@@ -147,9 +147,21 @@
 			template:"<div style=\"width:250px;\">{{lower}}<span style='width:200px;'><range-slider lower-value=\"lower\" upper-value=\"upper\" min-gap=\"1\" step=\"1\" min=\"min\" max=\"max\" ></range-slider></span>{{upper}}</div>"
 		}
 	});
+	app.directive('ocCheckbox', function() {
+    return {
+
+		scope :{
+			table : "=table"
+		},
+        template: '<md-button class ="md-button-toggle md-button md-ink-ripple" ng-click="show=!show" aria-controls="docs-menu-Demos" aria-expanded="false">Vodka</md-button><div layout="column" style="padding-left:20px">'+
+		
+		'<div ng-show="show"><div flex-gt-sm="50" ng-repeat="n in table"><md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.cb9" class="md-primary">{{n}}</md-checkbox></div></div></div>'
+    };
+});
   </script>
   
   <test-dir lower="lower" upper="upper" min="min" max="max"></test-dir>
+  <oc-checkbox table="number"></oc-checkbox>
 </body>
 </html>
 
