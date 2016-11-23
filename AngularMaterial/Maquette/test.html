@@ -202,16 +202,24 @@
 		scope :{
 			table : "=table"
 		},
-        template: '<md-button class ="md-button-toggle md-button md-ink-ripple" ng-click="show=!show" aria-controls="docs-menu-Demos" aria-expanded="false">Vodka</md-button><div layout="column" style="padding-left:20px">'+
+        template: '<div flex-gt-sm="50" ng-repeat="n in table"><md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.cb9" class="md-primary">{{n}}</md-checkbox></div>'
+    };
+});
+app.directive('ocButton' ,function() {
+	
+	    return {
 		
-		'<div ng-show="show"><div flex-gt-sm="50" ng-repeat="n in table"><md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.cb9" class="md-primary">{{n}}</md-checkbox></div></div></div>'
+			
+        template: '<md-button class ="md-button-toggle md-button md-ink-ripple" ng-click="show2=!show2" aria-controls="docs-menu-Demos" aria-expanded="false">Vodka</md-button></div></div>'+
+		'<div layout="column" style="padding-left:20px">'+
+     ' <div ng-show="show2"><oc-checkbox table="number"></oc-checkbox></div></div>'
     };
 });
   </script>
 
   
+<oc-button></oc-button>
 
-  <oc-checkbox table="number"></oc-checkbox>
 
 <br /><br />
  <div style="width:500px;"> <test-dir lower="lower" upper="upper" min="min" max="max"></test-dir></div>
