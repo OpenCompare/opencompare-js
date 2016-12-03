@@ -1,0 +1,46 @@
+<script src="Chart.js"></script>
+<canvas id="myChart" width="400" height="400" style="max-width:400px;max-height:400px"></canvas>
+<script>
+var ctx = document.getElementById("myChart");
+var data = {
+    type: 'bubbleImage',
+    data: {
+        datasets: [{
+           label: 'First Dataset',
+            data: [
+                {	
+					image:"http://flags.fmcdn.net/data/flags/w580/fr.png",
+                    x: 20,
+                    y: 30,
+                    r: 15
+                },
+                {
+					image:"http://flags.fmcdn.net/data/flags/w580/de.png",
+                    x: 40,
+                    y: 10,
+                    r: 15
+                },
+                {
+					image:"http://flags.fmcdn.net/data/flags/w580/gb.png",
+                    x: 30,
+                    y: 10,
+                    r: 15
+                },
+                {
+					image:"http://flags.fmcdn.net/data/flags/w580/ie.png",
+                    x: 40,
+                    y: 20,
+                    r: 15
+                }
+            ],
+            backgroundColor: "#FF6384",
+            hoverBackgroundColor: "#FF6384",
+        }]
+    },
+	options:{
+		animation:false
+	}
+};
+var myChart = new Chart(ctx, data);
+
+</script>
