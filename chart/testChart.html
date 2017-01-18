@@ -12,19 +12,23 @@ var data = {
 					image:"http://flags.fmcdn.net/data/flags/w580/fr.png",
                     x: 20,
                     y: 30,
-                    r: 15
+                    r: 15,
+					cropCircle:true
                 },
                 {
 					image:"http://flags.fmcdn.net/data/flags/w580/de.png",
                     x: 40,
                     y: 10,
-                    r: 15
+                    r: 15,
+					strokeCircle:true
                 },
                 {
 					image:"http://flags.fmcdn.net/data/flags/w580/gb.png",
                     x: 30,
                     y: 10,
-                    r: 15
+                    r: 15,
+					strokeStyle:"red",
+					strokeCircle:true
                 },
                 {
 					image:"http://flags.fmcdn.net/data/flags/w580/ie.png",
@@ -32,15 +36,46 @@ var data = {
                     y: 20,
                     r: 15
                 }
-            ],
-            backgroundColor: "#FF6384",
-            hoverBackgroundColor: "#FF6384",
+            ]
         }]
     },
 	options:{
-		animation:false
+		animation:false,
+        legend: {
+            display: false
+        },
+		
+        scales: {
+            yAxes: [{
+                ticks: {
+                    max: 32,
+                    min: 5,
+					stepSize:4
+                }
+            }],
+            xAxes: [{
+                ticks: {
+                    max: 45,
+                    min: 15,
+					stepSize:4
+                }
+            }]
+        },
+		tooltips: {
+		
+				delay:200
+        }
 	}
 };
 var myChart = new Chart(ctx, data);
+var originalShowTooltip = myChart.showTooltip;
+var timeout;
+myChart.showTooltip = function (activeElements) {
+    var delay = 500;
+    clearTimeout(timeout);
+    timeout = setTimeout(function () {
+        originalShowTooltip.call(myChart, activeElements);
+    }, delay);
+}
 
 </script>
