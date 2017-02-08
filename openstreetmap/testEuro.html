@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>Custom Icons Tutorial - Leaflet</title>
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+	<script src="leaflet.js"></script>
+
+
+	<style>
+		#map {
+			width: 800px;
+			height: 600px;
+		}
+	</style>
+
+
+</head>
+<body>
+
+<div id='map'></div>
+
+<script type="text/javascript" src="regions.geojson"></script>
+<script type="text/javascript" src="osmRequest.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.5.1.min.js"></script>
+
+<script>
+/*	L.Map = L.Map.extend({
+    openPopup: function (popup, latlng, options) {
+        if (!(popup instanceof L.Popup)) {
+        var content = popup;
+
+        popup = new L.Popup(options).setContent(content);
+        }
+
+        if (latlng) {
+        popup.setLatLng(latlng);
+        }
+
+        if (this.hasLayer(popup)) {
+        return this;
+        }
+
+        // NOTE THIS LINE : COMMENTING OUT THE CLOSEPOPUP CALL
+        //this.closePopup();
+        this._popup = popup;
+        return this.addLayer(popup);
+    }
+});*/
+	var map = L.map('map');
+
+	map.createPane('labels');
+
+	// This pane is above markers but below popups
+	map.getPane('labels').style.zIndex = 650;
+
+	// Layers in this pane are non-interactive and do not obscure mouse/touch events
+	map.getPane('labels').style.pointerEvents = 'none';
+
+
+	var cartodbAttribution = '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>';
+
+	var positron = L.tileLayer('http://{s}.tile2.opencyclemap.org/transport/{z}/{x}/{y}.png', {
+		attribution: cartodbAttribution
+	}).addTo(map);
+
+	//var positronLabels = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png', {
+	/*var positronLabels = L.tileLayer('http://{s}.tile2.opencyclemap.org/transport/{z}/{x}/{y}.png', {
+		attribution: cartodbAttribution,
+		pane: 'labels'
+	}).addTo(map)*/
+
+	function style(feature) {
+		return {
+			color : '#3388ff',
+			opacity: 6,
+			fillOpacity: 1
+		};
+	}
+
+/*	geojson = L.geoJson(euCountries,{}).addTo(map);
+
+	geojson.eachLayer(function (layer) {
+		//layer.bindPopup("cou");
+		var newpopup = L.popup({ closeOnClick: false }).setContent("content");
+		layer.bindPopup(newpopup);
+	});
+*/
+
+	var marker = L.marker([48.1113387,-1.6800197]).addTo(map);
+
+
+	map.setView({ lat: 47.040182144806664, lng: 9.667968750000002 }, 4);
+	var latLon = []
+
+	var city = "rennes"
+		$.ajax({
+		  url: "http://nominatim.openstreetmap.org/search/"+city+"?format=json",
+			success: function(data) {
+				console.log(data);
+				latLon.push(data[0]['lat'])
+			 	latLon.push(data[0]['lon'])
+				addMarker(latLon)
+				latLon = []
+			}
+		}).done(function(data) {
+		  	//console.log(data);
+			  latLon.push(data[0]['lat'])
+			 	latLon.push(data[0]['lon'])
+				console.log(latLon[0]);
+				console.log(latLon[1]);
+			//	addMarker(latLon)
+
+
+		});
+
+
+		function addMarker(latLon){
+		//	console.log(L)
+			var marker = L.marker(latLon);
+			marker.addTo(map)
+		}
+		console.log(pcm);
+</script>
+
+
+
+</body>
+</html>
